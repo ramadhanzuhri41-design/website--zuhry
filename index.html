@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #050816;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #00eaff;
+            filter: blur(180px);
+            opacity: 0.15;
+             top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #8a2be2;
+            filter: blur(180px);
+            opacity: 0.15;
+            right: -150px;
+            bottom: -150px;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 8, 22, 0.75);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #00eaff;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile {
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            border-radius: 50%;
+            border: 4px solid #00eaff;
+            box-shadow: 0 0 40px #00eaff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: linear-gradient(135deg, #10152d, #18234b);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            margin-top: 30px;
+        }
+
+        .hero h1 span {
+            color: #00eaff;
+            text-shadow: 0 0 25px #00eaff;
+        }
+
+        .hero p {
+            margin: 20px auto;
+            color: #b8bfdc;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 8px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #00eaff;
+            transition: .3s;
+        }
+
+        .btn.primary {
+            background: #00eaff;
+            color: #050816;
+            font-weight: bold;
+            box-shadow: 0 0 25px rgba(0,234,255,.5);
+        }
+         .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px #00eaff;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 8%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        .title span {
+            color: #00eaff;
+        }
+
+        /* About */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            color: #c5cae9;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .skill {
+            padding: 30px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 20px;
+            text-align: center;
+            transition: .4s;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px);
+            border-color: #00eaff;
+            box-shadow: 0 0 30px rgba(0,234,255,.2);
+        }
+
+        .skill h3 {
+            color: #00eaff;
+            margin-bottom: 15px;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .project {
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #10152d, #090d20);
+            border: 1px solid rgba(255,255,255,.1);
+            transition: .4s;
+        }
+
+        .project:hover {
+            transform: scale(1.03);
+            border-color: #8a2be2;
+            box-shadow: 0 0 30px rgba(138,43,226,.25);
+        }
+
+        .project-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .project h3 {
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 25px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+        }
+
+        .contact-box p {
+            margin: 15px;
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        /* Mobile */
+        @media(max-width:700px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Zuhri<span>.</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#skills">Skill</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <div class="profile">👨‍💻</div>
+
+            <h1>
+                Halo, Saya <span>Zuhri</span>
+            </h1>
+
+            <p>
+                Pelajar yang tertarik dengan teknologi, pemrograman,
+                website, dan berbagai hal keren di dunia digital.
+            </p>
+
+            <div class="buttons">
+                <a href="#about" class="btn primary">
+                    🚀 Tentang Saya
+                </a>
+
+                <a href="#projects" class="btn">
+                    💻 Lihat Proyek
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <h2 class="title">
+            Tentang <span>Saya</span>
+        </h2>
+
+        <div class="about">
+            <p>
+                Halo! Saya Zuhri. Saya sedang belajar dan mengembangkan
+                kemampuan di bidang teknologi dan pemrograman.
+                Saya suka mencoba membuat website, aplikasi, dan berbagai
+                proyek digital untuk menambah pengalaman.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <h2 class="title">
+            My <span>Skills</span>
+        </h2>
+
+        <div class="skills">
+
+            <div class="skill">
+                <h3>🌐 HTML</h3>
+                <p>Membuat struktur website.</p>
+            </div>
+
+            <div class="skill">
+                <h3>🎨 CSS</h3>
+                <p>Membuat website menjadi menarik dan responsif.</p>
+            </div>
+
+            <div class="skill">
+                <h3>⚡ JavaScript</h3>
+                <p>Membuat website menjadi interaktif.</p>
+            </div>
+
+            <div class="skill">
+                <h3>🐍 Python</h3>
+                <p>Membuat program dan game sederhana.</p>
+            </div>
+
+            <div class="skill">
+                <h3>💻 C++</h3>
+                <p>Belajar pemrograman dan algoritma.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <h2 class="title">
+            My <span>Projects</span>
+        </h2>
+
+        <div class="projects">
+
+            <div class="project">
+                <div class="project-icon">🌐</div>
+                <h3>Website Personal</h3>
+                <p>
+                    Website perkenalan diri dengan desain modern
+                    dan responsif.
+                </p>
+            </div>
+
+            <div class="project">
+                <div class="project-icon">🎮</div>
+                <h3>Game Python</h3>
+                <p>
+                    Game sederhana menggunakan Python dengan
+                    sistem skor dan level.
+                </p>
+            </div>
+
+            <div class="project">
+                <div class="project-icon">💻</div>
+                <h3>Program C++</h3>
+                <p>
+                    Berbagai program sederhana untuk belajar
+                    algoritma dan logika pemrograman.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+
+        <h2 class="title">
+            Hubungi <span>Saya</span>
+        </h2>
+
+        <div class="contact-box">
+
+            <p>📧 Email: emailkamu@gmail.com</p>
+            <p>📱 WhatsApp: 08xxxxxxxxxx</p>
+            <p>📸 Instagram: @usernamekamu</p>
+
+            <div class="buttons">
+                <a href="mailto:emailkamu@gmail.com" class="btn primary">
+                    ✉️ Kirim Email
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 Zuhri. Dibuat dengan ❤️ dan 💻
+    </footer>
+
+</body>
+</html>
